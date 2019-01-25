@@ -6,11 +6,11 @@ $title = $detail = $writer = $isNotice=$file1=$file2="";
 $title = $_POST['title'];
 $detail = $_POST['detail'];
 $writer = $_POST['writer'];
-if(empty($isNotice)){
-  $isNotice = "N";
+if($isNotice = $_POST['isNotice'] == ""){
+  $isNotice = 'N';
 }
 else{
-  $isNotice = $_POST['isNotice'];
+  $isNotice = "Y";
 }
 
 //select SQL//
@@ -24,10 +24,9 @@ if(empty($_FILES)==FALSE){
     $mimeType1 = $_FILES['fileToUpload1']['type'];
 
     if (move_uploaded_file($_FILES["fileToUpload1"]["tmp_name"], $target_file)) {
-        echo $_FILES['fileToUpload1']["name"];
-        echo $_FILES['fileToUpload1']["type"];
+        echo "파일1 업로드 완료.<br>";
         } else {
-        echo "파일1 업로드 에러";
+        echo "업로드할 파일이 없습니다.<br>";
         }
       }
 
@@ -37,9 +36,9 @@ if(empty($_FILES)==FALSE){
         basename($_FILES['fileToUpload2']["name"]);
 
         if (move_uploaded_file($_FILES["fileToUpload2"]["tmp_name"], $target_file)) {
-            echo "파일2이 업로드 됨";
+            echo "파일2이 업로드 완료<br>";
             } else {
-            echo "파일2 업로드 에러";
+            echo "업로드할 파일이 없습니다.<br>";
             }
           }
         }
@@ -53,7 +52,7 @@ if ($conn->query($str) === TRUE) {
 }
 $conn->close();
 ?>
-<!--<script>
+<script>
   alert("데이터가 추가되었습니다.");
   location.href="list.php";
-</script>-->
+</script>

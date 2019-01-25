@@ -3,12 +3,13 @@ include("../../inc/config.php");
 $page = "";
 $filecnt=0;
 
+
 if(empty($_GET)){
   $page = 1;
 }else{
   $page = $_GET['page'];
 }
-$pagesize = 2;
+$pagesize = 4;
 
 
 // 저장된 정보의 총 개수를 가져오는 쿼리 //
@@ -27,8 +28,7 @@ $result1= $conn->query($sql);
 $gong = "select * from handonglist where isNotice = 'Y'";
 $gong = $conn->query($gong);
 
-
- ?>
+?>
 
 
 <html>
@@ -57,12 +57,9 @@ $gong = $conn->query($gong);
     <div class="bbs-list">
 
 
-	<ul class="bbs_tab" style="margin-bottom:20px;">
-		<li class="on"><a href="?group=0">전체보기</a></li>
-<!-- 나중에 이부분 변수써서 온오프 맨위에서 조건문 설정-->
-		<li class="off"><a href="?group=57">일반공지</a></li>
-
-		<li class="off"><a href="?group=55">주요공지</a></li>
+	<ul class="bbs_tab" style="margin-bottom:20px; width: 100%;">
+		<li class="on"><a href="http://18.216.42.161/phpmyadmin/apmcamp/day4/notice/list.php">전체보기</a></li>
+    <li class="off"><a href="http://18.216.42.161/phpmyadmin/apmcamp/day4/notice/list.php">끝났다~~~~</a></li>
 
 	</ul>
 

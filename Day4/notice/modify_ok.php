@@ -11,13 +11,46 @@ if($isNotice = $_POST['isNotice'] == ""){
   $isNotice = 'N';
 }
 else{
-  $isNotice = "Y"
-  ;
+  $isNotice = "Y";
 }
+$file1['file1'];
+$file2['file2'];
 
 //select SQL//
 
-$sql = "update handonglist set title='$title', detail='$detail',writer='$writer', isNotice='$isNotice' where id='$id'";
+
+
+if(empty($_FILES)==FALSE){
+  if(empty($_FILES["fileToUpload1"])==FALSE){
+    $target_dir = "../../uploads/"; // specifices the directory where the file is going to be placed
+    $target_file = $target_dir .
+    basename($_FILES['fileToUpload1']["name"]);
+    $mimeType1 = $_FILES['fileToUpload1']['type'];
+
+    if (move_uploaded_file($_FILES["fileToUpload1"]["tmp_name"], $target_file)) {
+        echo "파일1 업로드 완료.<br>";
+        } else {
+        echo "업로드할 파일이 없습니다.<br>";
+        }
+      }
+
+  if(empty($_FILES["fileToUpload2"])==FALSE){
+        $target_dir = "../../uploads/"; // specifices the directory where the file is going to be placed
+        $target_file = $target_dir .
+        basename($_FILES['fileToUpload2']["name"]);
+
+        if (move_uploaded_file($_FILES["fileToUpload2"]["tmp_name"], $target_file)) {
+            echo "파일2이 업로드 완료<br>";
+            } else {
+            echo "업로드할 파일이 없습니다.<br>";
+            }
+          }
+        }
+
+$file1 = $_FILES["fileToUpload1"]["name"];
+$file2 = $_FILES["fileToUpload2"]["name"];
+
+$sql = "update handonglist set title='$title', detail='$detail', writer='$writer', isNotice='$isNotice', file1='$file1', file2='$file2' where id='$id'";
 if ($conn->query($sql) === TRUE) {
     echo "The record is modified successfully";
 } else {
